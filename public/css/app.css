@@ -1,4 +1,4 @@
-@import url("https://fonts.googleapis.com/css2?family=Lobster&family=Poppins:wght@100;200;400;500;700&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Dancing+Script&family=Poppins:wght@100;200;400;500;700&display=swap");
 * {
   -webkit-box-sizing: border-box;
           box-sizing: border-box;
@@ -7,38 +7,45 @@
 }
 
 body {
-  font-family: 'Lobster', cursive;
   font-family: 'Poppins', sans-serif;
-  overflow: hidden;
+  position: relative;
+  height: 100vh;
+  height: 100svh;
 }
 
 nav {
-  background-color: #222;
-  height: 50px;
+  display: -ms-grid;
+  display: grid;
+  -ms-grid-columns: (1fr)[7];
+      grid-template-columns: repeat(7, 1fr);
+  position: fixed;
+  width: 100%;
+  height: 3rem;
+  color: white;
+  font-size: 2rem;
+  -webkit-box-shadow: 0px 0px 2px white;
+          box-shadow: 0px 0px 2px white;
+}
+
+nav .grid-left {
+  grid-column: span 1;
+  text-align: center;
+}
+
+nav .grid-right {
+  grid-column: span 6;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
   -webkit-box-align: center;
       -ms-flex-align: center;
           align-items: center;
-}
-
-nav a {
-  color: white;
-  text-decoration: none;
+  justify-self: flex-end;
+  margin-right: 1rem;
 }
 
 main {
-  height: 400px;
-}
-
-main a {
-  color: #222;
-  text-decoration: none;
-}
-
-ul {
-  list-style: none;
+  height: 100%;
 }
 
 .container {
@@ -46,25 +53,73 @@ ul {
   margin: auto;
 }
 
-.main-text {
-  position: absolute;
-  top: 50%;
-  left: 40%;
-  translate: -50% -50%;
-  color: #222;
-  font-size: calc(min(20vw, 23rem));
-  font-weight: bold;
-  -webkit-transition: 1s;
-  transition: 1s;
+.hero {
+  min-height: 100vh;
+  width: 100%;
+  position: relative;
 }
 
-.carousel-container {
-  translate: 0 -100vh;
-  scale: 3;
+.hero .selected-cell {
+  position: fixed;
+  width: 100%;
+  height: 100%;
+  -webkit-transition: 3s;
+  transition: 3s;
+  opacity: 1;
+  top: 50%;
+  left: 50%;
+  translate: -50% -50%;
+  z-index: 222;
+}
+
+.hero .selected-cell img {
+  width: 100%;
+  -o-object-fit: cover;
+     object-fit: cover;
+}
+
+.hero .main-text {
   position: absolute;
   top: 30%;
-  right: 10%;
-  margin: 40px 0;
+  left: 10%;
+  color: #222;
+  font-size: calc(min(15vw, 20rem));
+  font-weight: bold;
+  -webkit-user-select: none;
+     -moz-user-select: none;
+      -ms-user-select: none;
+          user-select: none;
+}
+
+.hero .main-text span {
+  position: absolute;
+  color: #70218f;
+}
+
+.hero .main-text::before {
+  content: 'your dream';
+  font-family: 'Dancing Script', cursive;
+  position: absolute;
+  color: #70218f;
+  top: -50px;
+  left: 0;
+  font-size: calc(min(5vw, 6rem));
+}
+
+.hero .main-text:after {
+  content: 'delivered.';
+  font-family: 'Dancing Script', cursive;
+  position: absolute;
+  color: #70218f;
+  bottom: -50px;
+  right: 0;
+  font-size: calc(min(5vw, 6rem));
+}
+
+.hero .carousel-container {
+  position: absolute;
+  top: 30%;
+  right: 15%;
   width: 200px;
   height: 200px;
   margin: 80px auto;
@@ -79,13 +134,13 @@ ul {
   -webkit-box-align: center;
       -ms-flex-align: center;
           align-items: center;
-  -webkit-transform: rotateZ(80deg);
-          transform: rotateZ(80deg);
+  -webkit-transform: rotateZ(70deg);
+          transform: rotateZ(70deg);
   -webkit-transition: .3s;
   transition: .3s;
 }
 
-.carousel-container .carousel {
+.hero .carousel-container .carousel {
   width: 100%;
   height: 100%;
   position: relative;
@@ -97,56 +152,160 @@ ul {
   transition: transform 1s, -webkit-transform 1s;
 }
 
-.carousel-container .carousel .cell {
+.hero .carousel-container .carousel .cell {
   position: absolute;
+  overflow: hidden;
   width: 200px;
   height: 140px;
   border-radius: 5px;
-  -webkit-box-shadow: 5px 5px 10px #d1d1d1;
-          box-shadow: 5px 5px 10px #d1d1d1;
+  -webkit-transition: 1s;
+  transition: 1s;
+  cursor: pointer;
   -webkit-transform: rotateY(0deg) translateZ(0px) rotateZ(-90deg);
           transform: rotateY(0deg) translateZ(0px) rotateZ(-90deg);
-  -webkit-transition: scale .2s, -webkit-transform 1s;
-  transition: scale .2s, -webkit-transform 1s;
-  transition: transform 1s, scale .2s;
-  transition: transform 1s, scale .2s, -webkit-transform 1s;
-  cursor: pointer;
 }
 
-.carousel-container .carousel .cell:hover {
-  scale: 1.05;
+.hero .carousel-container .carousel .cell .info {
+  position: absolute;
+  padding: .5rem;
+  bottom: 0;
+  right: 0;
+  color: white;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+  width: 100%;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  font-size: .8rem;
 }
 
-.carousel-container .carousel .cell.show-cell {
-  border: 1px solid red;
+.hero .carousel-container .carousel .cell:hover {
+  scale: 1.02;
 }
 
-.carousel-container .carousel .cell img {
+.hero .carousel-container .carousel .cell img {
   -o-object-fit: cover;
      object-fit: cover;
   height: 100%;
   width: 100%;
 }
 
+.product-page {
+  padding-top: 3rem;
+  position: relative;
+  display: -ms-grid;
+  display: grid;
+  -ms-grid-columns: (1fr)[7];
+      grid-template-columns: repeat(7, 1fr);
+  width: 100%;
+  height: 100%;
+  color: white;
+}
+
+.product-page .background-image {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  -o-object-fit: cover;
+     object-fit: cover;
+  -o-object-position: center;
+     object-position: center;
+  z-index: -1;
+}
+
+.product-page .info {
+  text-align: center;
+}
+
+.product-page .info .first {
+  font-size: 6rem;
+  font-weight: bold;
+}
+
+.product-page .info .second {
+  line-height: 0px;
+  font-size: 3rem;
+  margin-bottom: 1rem;
+}
+
+.product-page .left {
+  background-color: rgba(78, 32, 151, 0.5);
+  width: 100%;
+  padding: 1rem;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+  grid-column: span 1;
+}
+
+.product-page .left .description {
+  text-align: center;
+}
+
+.product-page .right {
+  padding: 1rem;
+  grid-column: span 6;
+}
+
+.product-page .right .info {
+  text-align: start;
+}
+
+.product-page .right .arrows {
+  position: absolute;
+  bottom: 1rem;
+  right: 2rem;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  gap: 3rem;
+  color: rgba(255, 255, 255, 0.6);
+}
+
+.product-page .right .arrows i {
+  font-size: 3rem;
+  cursor: pointer;
+  -webkit-transition: .2s;
+  transition: .2s;
+}
+
+.product-page .right .arrows i:hover {
+  color: white;
+}
+
 @-webkit-keyframes spin {
   from {
-    -webkit-transform: rotateY(0deg);
-            transform: rotateY(0deg);
+    -webkit-transform: rotateY(0deg) rotateX(-10deg);
+            transform: rotateY(0deg) rotateX(-10deg);
   }
   to {
-    -webkit-transform: rotateY(360deg);
-            transform: rotateY(360deg);
+    -webkit-transform: rotateY(360deg) rotateX(10deg);
+            transform: rotateY(360deg) rotateX(10deg);
   }
 }
 
 @keyframes spin {
   from {
-    -webkit-transform: rotateY(0deg);
-            transform: rotateY(0deg);
+    -webkit-transform: rotateY(0deg) rotateX(-10deg);
+            transform: rotateY(0deg) rotateX(-10deg);
   }
   to {
-    -webkit-transform: rotateY(360deg);
-            transform: rotateY(360deg);
+    -webkit-transform: rotateY(360deg) rotateX(10deg);
+            transform: rotateY(360deg) rotateX(10deg);
   }
 }
 
@@ -165,6 +324,24 @@ ul {
   }
   to {
     translate: 0 0;
+  }
+}
+
+@-webkit-keyframes scaleImage {
+  0% {
+    scale: .1;
+  }
+  100% {
+    scale: 1;
+  }
+}
+
+@keyframes scaleImage {
+  0% {
+    scale: .1;
+  }
+  100% {
+    scale: 1;
   }
 }
 /*# sourceMappingURL=app.css.map */

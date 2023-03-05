@@ -2,7 +2,6 @@
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
-use App\Models\Listing;
 use App\Models\Event;
 
 // All EVENTS
@@ -12,20 +11,12 @@ Route::get('/', function () {
   ]);
 });
 
-// Route::get('/', function () {
-//   return view('listings', [
-//     'heading' => 'Latest Listings',
-//     'listings' => Listing::all()
-//   ]);
-// });
-
-// SINGLE LISTING
-Route::get('/listing/{id}', function ($id) {
-  return view('listing', [
-    'listing' => Listing::find($id)
+// SINGLE EVENT
+Route::get('/event/{id}', function ($id) {
+  return view('event', [
+    'event' => Event::find($id)
   ]);
 });
-
 
 // Route::get('/test', function () {
 //   return response('<h1>dziala</h1>', 200)
