@@ -14,38 +14,19 @@ body {
 }
 
 nav {
-  display: -ms-grid;
-  display: grid;
-  -ms-grid-columns: (1fr)[7];
-      grid-template-columns: repeat(7, 1fr);
-  position: fixed;
-  width: 100%;
-  height: 3rem;
-  color: white;
-  font-size: 2rem;
-  -webkit-box-shadow: 0px 0px 2px white;
-          box-shadow: 0px 0px 2px white;
-}
-
-nav .grid-left {
-  grid-column: span 1;
-  text-align: center;
-}
-
-nav .grid-right {
-  grid-column: span 6;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
   -webkit-box-align: center;
       -ms-flex-align: center;
           align-items: center;
-  justify-self: flex-end;
-  margin-right: 1rem;
-}
-
-main {
-  height: 100%;
+  height: 3rem;
+  background-color: #161616;
+  color: white;
+  font-size: 2rem;
 }
 
 .container {
@@ -53,78 +34,125 @@ main {
   margin: auto;
 }
 
-.hero {
-  min-height: 100vh;
-  width: 100%;
+main {
   position: relative;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-wrap: wrap;
+      flex-wrap: wrap;
+  height: calc(100vh - 3rem);
+  overflow: hidden;
 }
 
-.hero .selected-cell {
-  position: fixed;
-  width: 100%;
+main div:nth-child(1) {
+  -webkit-box-flex: 1;
+      -ms-flex: 1 0 300px;
+          flex: 1 0 300px;
+}
+
+main div:nth-child(2) {
+  -webkit-box-flex: 10;
+      -ms-flex: 10 0 800px;
+          flex: 10 0 800px;
+  background-color: #d1d1d1;
+}
+
+#find-event-form {
+  background-color: #025064;
   height: 100%;
-  -webkit-transition: 3s;
-  transition: 3s;
-  opacity: 1;
-  top: 50%;
-  left: 50%;
-  translate: -50% -50%;
-  z-index: 222;
+  padding: 1rem;
+  color: white;
 }
 
-.hero .selected-cell img {
+#find-event-form ul {
+  list-style: none;
+}
+
+#find-event-form ul li {
+  border: 3px solid rgba(255, 255, 255, 0.329);
+  border-radius: 1rem;
+  padding: 1rem;
+  margin: 10px 0;
+}
+
+#find-event-form ul li .box-title {
+  font-size: 1.3rem;
+}
+
+#find-event-form ul li .switch {
+  position: relative;
+  display: inline-block;
   width: 100%;
-  -o-object-fit: cover;
-     object-fit: cover;
+  height: 50px;
+  border-radius: 100vw;
+  overflow: hidden;
 }
 
-.hero .main-text {
+#find-event-form ul li .switch input {
+  opacity: 0;
+  width: 0;
+  height: 0;
+}
+
+#find-event-form ul li .switch input:checked + .slider {
+  background-color: rgba(3, 109, 135, 0.6);
+}
+
+#find-event-form ul li .switch input:checked + .slider::before {
+  -webkit-transform: translateX(100%);
+          transform: translateX(100%);
+  content: attr(data-off);
+}
+
+#find-event-form ul li .switch .slider {
   position: absolute;
-  top: 30%;
-  left: 10%;
+  cursor: pointer;
+  inset: 0;
+  background-color: rgba(3, 109, 135, 0.2);
+  -webkit-transition: .4s;
+  -webkit-transition: 1s;
+  transition: 1s;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  padding: 5px;
+}
+
+#find-event-form ul li .switch .slider:before {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  content: attr(data-on);
   color: #222;
-  font-size: calc(min(15vw, 20rem));
-  font-weight: bold;
-  -webkit-user-select: none;
-     -moz-user-select: none;
-      -ms-user-select: none;
-          user-select: none;
+  height: 100%;
+  width: 50%;
+  border-radius: 100vw;
+  right: auto;
+  background-color: white;
+  -webkit-transition: .4s;
+  -webkit-transition: 1s;
+  transition: 1s;
 }
 
-.hero .main-text span {
+.carousel-container {
   position: absolute;
-  color: #70218f;
-}
-
-.hero .main-text::before {
-  content: 'your dream';
-  font-family: 'Dancing Script', cursive;
-  position: absolute;
-  color: #70218f;
-  top: -50px;
-  left: 0;
-  font-size: calc(min(5vw, 6rem));
-}
-
-.hero .main-text:after {
-  content: 'delivered.';
-  font-family: 'Dancing Script', cursive;
-  position: absolute;
-  color: #70218f;
-  bottom: -50px;
-  right: 0;
-  font-size: calc(min(5vw, 6rem));
-}
-
-.hero .carousel-container {
-  position: absolute;
-  top: 30%;
+  top: 35%;
   right: 15%;
   width: 200px;
   height: 200px;
   margin: 80px auto;
-  -webkit-perspective: 800px;
-          perspective: 800px;
+  -webkit-perspective: 1000px;
+          perspective: 1000px;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -140,7 +168,7 @@ main {
   transition: .3s;
 }
 
-.hero .carousel-container .carousel {
+.carousel-container .carousel {
   width: 100%;
   height: 100%;
   position: relative;
@@ -150,9 +178,16 @@ main {
   transition: -webkit-transform 1s;
   transition: transform 1s;
   transition: transform 1s, -webkit-transform 1s;
+  -webkit-animation: spin 10s linear infinite;
+          animation: spin 10s linear infinite;
+  -webkit-animation-fill-mode: forwards;
+          animation-fill-mode: forwards;
 }
 
-.hero .carousel-container .carousel .cell {
+.carousel-container .carousel .cell {
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
   position: absolute;
   overflow: hidden;
   width: 200px;
@@ -165,43 +200,33 @@ main {
           transform: rotateY(0deg) translateZ(0px) rotateZ(-90deg);
 }
 
-.hero .carousel-container .carousel .cell .info {
+.carousel-container .carousel .cell .info {
   position: absolute;
-  padding: .5rem;
-  bottom: 0;
-  right: 0;
-  color: white;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
-  -webkit-box-pack: justify;
-      -ms-flex-pack: justify;
-          justify-content: space-between;
-  width: 100%;
-  -webkit-box-align: center;
-      -ms-flex-align: center;
-          align-items: center;
-  font-size: .8rem;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  bottom: 0;
+  padding: .5rem;
+  left: 0;
+  color: white;
+  background: transparent;
 }
 
-.hero .carousel-container .carousel .cell:hover {
+.carousel-container .carousel .cell:hover {
   scale: 1.02;
 }
 
-.hero .carousel-container .carousel .cell img {
-  -o-object-fit: cover;
-     object-fit: cover;
-  height: 100%;
-  width: 100%;
-}
-
 .product-page {
-  padding-top: 3rem;
+  inherits: '.grid-7';
+  overflow: hidden;
   position: relative;
-  display: -ms-grid;
-  display: grid;
-  -ms-grid-columns: (1fr)[7];
-      grid-template-columns: repeat(7, 1fr);
   width: 100%;
   height: 100%;
   color: white;
@@ -236,7 +261,9 @@ main {
 }
 
 .product-page .left {
-  background-color: rgba(78, 32, 151, 0.5);
+  position: relative;
+  overflow: hidden;
+  background-color: #036d87;
   width: 100%;
   padding: 1rem;
   display: -webkit-box;
@@ -257,6 +284,7 @@ main {
 }
 
 .product-page .right {
+  position: relative;
   padding: 1rem;
   grid-column: span 6;
 }
@@ -273,39 +301,55 @@ main {
   display: -ms-flexbox;
   display: flex;
   gap: 3rem;
+}
+
+.product-page .right .arrows button {
   color: rgba(255, 255, 255, 0.6);
 }
 
-.product-page .right .arrows i {
+.product-page .right .arrows button i {
   font-size: 3rem;
   cursor: pointer;
   -webkit-transition: .2s;
   transition: .2s;
 }
 
-.product-page .right .arrows i:hover {
+.product-page .right .arrows button:hover {
   color: white;
+}
+
+.page-transition {
+  position: absolute;
+  inset: 0;
+}
+
+.page-transition-right {
+  background-color: #222;
+}
+
+.page-transition-left {
+  background-color: #fff;
 }
 
 @-webkit-keyframes spin {
   from {
-    -webkit-transform: rotateY(0deg) rotateX(-10deg);
-            transform: rotateY(0deg) rotateX(-10deg);
+    -webkit-transform: rotateY(0deg);
+            transform: rotateY(0deg);
   }
   to {
-    -webkit-transform: rotateY(360deg) rotateX(10deg);
-            transform: rotateY(360deg) rotateX(10deg);
+    -webkit-transform: rotateY(360deg);
+            transform: rotateY(360deg);
   }
 }
 
 @keyframes spin {
   from {
-    -webkit-transform: rotateY(0deg) rotateX(-10deg);
-            transform: rotateY(0deg) rotateX(-10deg);
+    -webkit-transform: rotateY(0deg);
+            transform: rotateY(0deg);
   }
   to {
-    -webkit-transform: rotateY(360deg) rotateX(10deg);
-            transform: rotateY(360deg) rotateX(10deg);
+    -webkit-transform: rotateY(360deg);
+            transform: rotateY(360deg);
   }
 }
 

@@ -56,23 +56,29 @@ export function carousel() {
 
     // EVENTS
     carousel.addEventListener('mouseenter', () => {
-      carousel.style.animationPlayState = 'paused'
-      carousel.addEventListener('wheel', (e) => {
-        scrollCarousel(e)
-      })
-    })
+      carousel.style.animationPlayState = 'paused';
+      carousel.addEventListener('wheel', scrollCarousel);
+    });
 
     carousel.addEventListener('mouseleave', () => {
-      carousel.style.animationPlayState = 'running'
-    })
+      carousel.style.animationPlayState = 'running';
+      carousel.removeEventListener('wheel', scrollCarousel);
+    });
 
-    let rotateValue = 0
 
     function scrollCarousel(e) {
-      e.preventDefault()
-      e.wheelDelta > 0 ? rotateValue += 2 : rotateValue -= 2
-      carousel.style.transform = `rotateY(${rotateValue}deg)`
-      console.log(rotateValue)
+      e.preventDefault();
+
+      // Get the current rotation value of the carousel
+      const currentRotation = parseInt(carousel.style.transform.split('rotateY(')[1].split('deg)')[0]);
+
+      // Calculate the new rotation value based on the direction of the scroll
+      const newRotation = e.deltaY > 0 ? currentRotation + 5 : currentRotation - 5;
+
+      // Apply the new rotation value to the carousel
+      carousel.style.transform = `translateZ(-${radius}px) rotateY(${newRotation}deg)`;
     }
+
+
   }
 }

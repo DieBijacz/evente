@@ -6,7 +6,7 @@ use App\Models\Event;
 
 // All EVENTS
 Route::get('/', function () {
-  return view('events', [
+  return view('home', [
     'events' => Event::all()
   ]);
 });

@@ -1,10 +1,9 @@
 @extends('layout')
 @section('content')
 
-<div class="product-page">
-  {{-- <img src='.{{$event->image}}' class="background-image" /> --}}
-  <img src='../images/guitar.jpg' class="background-image" />
+<div class="product-page grid-7">
   <div class="left">
+    {{-- <div class="page-transition page-transition-left"></div> --}}
     <div class="info">
       <div class="first">04</div>
       <div class="second">JUN</div>
@@ -16,15 +15,25 @@
     <button>BOOK NOW</button>
   </div>
   <div class="right">
+    <div class="page-transition page-transition-right"></div>
     <div class="info">
       <h1 class="first">Linkin Park</h1>
       <div class="second">London</div>
     </div>
     <div class="arrows">
-      <i class="fa-solid fa-arrow-left"></i>
-      <i class="fa-solid fa-arrow-right"></i>
+      <button id="prev-button">
+        <a href="./2">
+          <i class="fa-solid fa-arrow-left"></i>
+        </a>
+      </button>
+      <button id="next-button">
+        <a href="./3">
+          <i class="fa-solid fa-arrow-right"></i>
+        </a>
+      </button>
     </div>
   </div>
+  <img src='.{{$event->image}}' class="background-image" />
 </div>
 
 @endsection
