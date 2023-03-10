@@ -15,9 +15,7 @@ export function carousel() {
   let SPIN_SPEED = 200
   const radius = Math.round((CELL_SIZE / 2) / Math.tan(Math.PI / CELLS_COUNT))
 
-  setTimeout(() => {
-    runCarousel()
-  }, 1000);
+  runCarousel()
 
   if (showCarousel) {
     carouselContainer.style.translate = '0 0'

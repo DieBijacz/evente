@@ -19,8 +19,7 @@
 <body>
   <nav>
     <div>evente</div>
-    <i class="fa-solid fa-bars"></i>
-    </div>
+    {{-- <i class="fa-solid fa-bars"></i> --}}
   </nav>
   <main>
     @yield('left')

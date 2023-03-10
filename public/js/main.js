@@ -1,6 +1,11 @@
+import { calendar } from "./calendar.js";
 import { carousel } from "./carousel.js";
 const carouselElement = document.querySelector('.carousel')
-if (carouselElement) carousel()
+
+jQuery(document).ready(function () {
+  if (carouselElement) carousel()
+  calendar()
+})
 
 window.onload = () => {
   gsap.to('.page-transition', { x: '100%', duration: .3 })

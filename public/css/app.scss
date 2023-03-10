@@ -1,9 +1,10 @@
 @import url('https://fonts.googleapis.com/css2?family=Dancing+Script&family=Poppins:wght@100;200;400;500;700&display=swap');
 
 $blue: rgb(50, 81, 148);
+$main: #161616;
 $accent: rgb(112, 33, 143);
-$accent-2: hsl(192, 96%, 20%);
-$accent-3: hsl(192, 96%, 27%);
+$accent-3: hsl(310, 41%, 73%);
+$accent-2: hsl(221, 100%, 10%);
 $carousel-radius: 308px;
 $carousel-cell-width: 190px;
 $carousel-cell-height: 190px;
@@ -17,7 +18,7 @@ $carousel-cell-height: 190px;
 body {
   font-family: 'Poppins', sans-serif;
   position: relative;
-  // overflow: hidden;
+  overflow: hidden;
   height: 100vh;
   height: 100svh;
 }
@@ -27,9 +28,18 @@ nav {
   justify-content: space-between;
   align-items: center;
   height: 3rem;
-  background-color: #161616;
+  background-color: $main;
   color: white;
   font-size: 2rem;
+  box-shadow: 2px 2px 20px $main;
+}
+
+button {
+  border: none;
+  background: transparent;
+  color: white;
+  border-radius: 100vw;
+  cursor: pointer;
 }
 
 .container {
@@ -38,36 +48,50 @@ nav {
 }
 
 main {
-  position: relative;
+  width: 100%;
+  height: calc(100vh - 3rem);
+  background-image: url(../images/hero-bg-1.jpg);
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  // animation: 40s linear transition-background-2 infinite;
+  overflow: hidden;
+  z-index: -1;
+}
+
+.home-page {
   display: flex;
   flex-wrap: wrap;
-  height: calc(100vh - 3rem);
-  overflow: hidden;
+  height: 100%;
 
-  div:nth-child(1) {
+  .left-side {
     flex: 1 0 300px;
+    box-shadow: 0px 0px 30px $main;
   }
 
-  div:nth-child(2) {
+  .right-side {
     flex: 10 0 800px;
-    background-color: #d1d1d1;
   }
 }
 
+ul {
+  list-style: none;
+}
+
 #find-event-form {
-  background-color: $accent-2;
+  // background-color: $accent-2;
+  background-color: rgba($color: $main, $alpha: .9);
   height: 100%;
   padding: 1rem;
   color: white;
+  transition: .3s;
 
-  ul {
-    list-style: none;
-
-    li {
-      border: 3px solid rgba(255, 255, 255, 0.329);
+  .options {
+    .box {
       border-radius: 1rem;
-      padding: 1rem;
+      padding: .5rem;
       margin: 10px 0;
+      transition: .3s;
 
       .box-title {
         font-size: 1.3rem;
@@ -102,7 +126,7 @@ main {
           inset: 0;
           background-color: rgba($color: $accent-3, $alpha: .2);
           -webkit-transition: .4s;
-          transition: 1s;
+          transition: .3s;
           display: flex;
           align-items: center;
           padding: 5px;
@@ -119,10 +143,135 @@ main {
             right: auto;
             background-color: white;
             -webkit-transition: .4s;
-            transition: 1s;
+            transition: .3s;
           }
         }
       }
+
+      .toggle-section {
+        transition: .3s;
+        opacity: 0;
+        height: 0;
+        transform: translateY(-20%);
+        overflow: hidden;
+
+        &.show {
+          opacity: 1;
+          height: 100%;
+          transform: translateY(0%);
+        }
+
+        .small-options {
+
+          label {
+            width: 100%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            cursor: pointer;
+          }
+
+          i {
+            display: none;
+          }
+
+          input[type=checkbox] {
+            display: none;
+          }
+
+          li:hover {
+            background-color: rgba($color: $accent-3, $alpha: .5);
+          }
+
+          li:has(input[type=checkbox]:checked) {
+            background-color: $accent-3;
+          }
+
+          input[type=checkbox]:checked+i {
+            display: block;
+          }
+        }
+      }
+    }
+  }
+
+  #calendar {
+    text-align: center;
+    margin: 1rem;
+
+    #calendar-controls {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+
+      i {
+        font-size: 1.2rem;
+      }
+    }
+
+    #calendar-selected-date {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      padding: .5rem;
+      line-height: 1rem;
+
+      #calendar-selected-day {
+        font-size: 3rem;
+        font-weight: bold;
+      }
+    }
+
+    #calendar-weeks {
+      width: 100%;
+      display: grid;
+      grid-template-columns: repeat(7, 1fr);
+      gap: 5px;
+    }
+
+    #calendar-days {
+      display: grid;
+      grid-template-columns: repeat(7, 1fr);
+      gap: 5px;
+
+      li {
+        aspect-ratio: 1/1;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        cursor: pointer;
+        border-radius: 50%;
+
+        &:hover {
+          background-color: $accent-3;
+        }
+      }
+    }
+  }
+
+  .buttons {
+    width: 100%;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+
+    button {
+      font-size: 1.3rem;
+      padding: .5rem 1rem;
+
+
+      &:hover {
+        background-color: $accent-3;
+        border: none;
+      }
+    }
+
+    #clear-search-form {
+      border: none;
+    }
+
+    button[type=submit] {
+      border: 3px solid $accent-3;
     }
   }
 }
@@ -134,7 +283,7 @@ main {
   width: 200px;
   height: 200px;
   margin: 80px auto;
-  perspective: 1000px;
+  perspective: 900px;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -148,7 +297,6 @@ main {
     transform-style: preserve-3d;
     transition: transform 1s;
     animation: spin 10s linear infinite;
-    animation-fill-mode: forwards;
 
     .cell {
       background-position: center;
@@ -183,7 +331,6 @@ main {
 }
 
 .product-page {
-  inherits: '.grid-7';
   overflow: hidden;
   position: relative;
   width: 100%;
@@ -253,9 +400,7 @@ main {
 
         i {
           font-size: 3rem;
-          cursor: pointer;
           transition: .2s;
-
         }
 
         &:hover {
@@ -307,5 +452,46 @@ main {
 
   100% {
     scale: 1;
+  }
+}
+
+@keyframes transition-background-1 {
+  from {
+    background-position: 30% 50%;
+    background-size: 300%;
+  }
+
+  to {
+    background-position: 50% 70%;
+    background-size: 300%;
+  }
+}
+
+@keyframes transition-background-2 {
+  from {
+    background-position: 50% 60%;
+    background-size: 200%;
+  }
+
+  50% {
+    background-position: center;
+    background-size: 100%;
+  }
+
+  to {
+    background-position: 80% 40%;
+    background-size: 100%;
+  }
+}
+
+@keyframes transition-background-3 {
+  from {
+    background-position: 50% 50%;
+    background-size: 300%;
+  }
+
+  to {
+    background-position: center;
+    background-size: 100%;
   }
 }

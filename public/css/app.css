@@ -9,6 +9,7 @@
 body {
   font-family: 'Poppins', sans-serif;
   position: relative;
+  overflow: hidden;
   height: 100vh;
   height: 100svh;
 }
@@ -27,6 +28,16 @@ nav {
   background-color: #161616;
   color: white;
   font-size: 2rem;
+  -webkit-box-shadow: 2px 2px 20px #161616;
+          box-shadow: 2px 2px 20px #161616;
+}
+
+button {
+  border: none;
+  background: transparent;
+  color: white;
+  border-radius: 100vw;
+  cursor: pointer;
 }
 
 .container {
@@ -35,52 +46,65 @@ nav {
 }
 
 main {
-  position: relative;
+  width: 100%;
+  height: calc(100vh - 3rem);
+  background-image: url(../images/hero-bg-1.jpg);
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  overflow: hidden;
+  z-index: -1;
+}
+
+.home-page {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
   -ms-flex-wrap: wrap;
       flex-wrap: wrap;
-  height: calc(100vh - 3rem);
-  overflow: hidden;
+  height: 100%;
 }
 
-main div:nth-child(1) {
+.home-page .left-side {
   -webkit-box-flex: 1;
       -ms-flex: 1 0 300px;
           flex: 1 0 300px;
+  -webkit-box-shadow: 0px 0px 30px #161616;
+          box-shadow: 0px 0px 30px #161616;
 }
 
-main div:nth-child(2) {
+.home-page .right-side {
   -webkit-box-flex: 10;
       -ms-flex: 10 0 800px;
           flex: 10 0 800px;
-  background-color: #d1d1d1;
 }
 
-#find-event-form {
-  background-color: #025064;
-  height: 100%;
-  padding: 1rem;
-  color: white;
-}
-
-#find-event-form ul {
+ul {
   list-style: none;
 }
 
-#find-event-form ul li {
-  border: 3px solid rgba(255, 255, 255, 0.329);
-  border-radius: 1rem;
+#find-event-form {
+  background-color: rgba(22, 22, 22, 0.9);
+  height: 100%;
   padding: 1rem;
-  margin: 10px 0;
+  color: white;
+  -webkit-transition: .3s;
+  transition: .3s;
 }
 
-#find-event-form ul li .box-title {
+#find-event-form .options .box {
+  border-radius: 1rem;
+  padding: .5rem;
+  margin: 10px 0;
+  -webkit-transition: .3s;
+  transition: .3s;
+}
+
+#find-event-form .options .box .box-title {
   font-size: 1.3rem;
 }
 
-#find-event-form ul li .switch {
+#find-event-form .options .box .switch {
   position: relative;
   display: inline-block;
   width: 100%;
@@ -89,30 +113,30 @@ main div:nth-child(2) {
   overflow: hidden;
 }
 
-#find-event-form ul li .switch input {
+#find-event-form .options .box .switch input {
   opacity: 0;
   width: 0;
   height: 0;
 }
 
-#find-event-form ul li .switch input:checked + .slider {
-  background-color: rgba(3, 109, 135, 0.6);
+#find-event-form .options .box .switch input:checked + .slider {
+  background-color: rgba(214, 158, 205, 0.6);
 }
 
-#find-event-form ul li .switch input:checked + .slider::before {
+#find-event-form .options .box .switch input:checked + .slider::before {
   -webkit-transform: translateX(100%);
           transform: translateX(100%);
   content: attr(data-off);
 }
 
-#find-event-form ul li .switch .slider {
+#find-event-form .options .box .switch .slider {
   position: absolute;
   cursor: pointer;
   inset: 0;
-  background-color: rgba(3, 109, 135, 0.2);
+  background-color: rgba(214, 158, 205, 0.2);
   -webkit-transition: .4s;
-  -webkit-transition: 1s;
-  transition: 1s;
+  -webkit-transition: .3s;
+  transition: .3s;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -122,7 +146,7 @@ main div:nth-child(2) {
   padding: 5px;
 }
 
-#find-event-form ul li .switch .slider:before {
+#find-event-form .options .box .switch .slider:before {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -140,8 +164,165 @@ main div:nth-child(2) {
   right: auto;
   background-color: white;
   -webkit-transition: .4s;
-  -webkit-transition: 1s;
-  transition: 1s;
+  -webkit-transition: .3s;
+  transition: .3s;
+}
+
+#find-event-form .options .box .toggle-section {
+  -webkit-transition: .3s;
+  transition: .3s;
+  opacity: 0;
+  height: 0;
+  -webkit-transform: translateY(-20%);
+          transform: translateY(-20%);
+  overflow: hidden;
+}
+
+#find-event-form .options .box .toggle-section.show {
+  opacity: 1;
+  height: 100%;
+  -webkit-transform: translateY(0%);
+          transform: translateY(0%);
+}
+
+#find-event-form .options .box .toggle-section .small-options label {
+  width: 100%;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  cursor: pointer;
+}
+
+#find-event-form .options .box .toggle-section .small-options i {
+  display: none;
+}
+
+#find-event-form .options .box .toggle-section .small-options input[type=checkbox] {
+  display: none;
+}
+
+#find-event-form .options .box .toggle-section .small-options li:hover {
+  background-color: rgba(214, 158, 205, 0.5);
+}
+
+#find-event-form .options .box .toggle-section .small-options li:has(input[type=checkbox]:checked) {
+  background-color: #d69ecd;
+}
+
+#find-event-form .options .box .toggle-section .small-options input[type=checkbox]:checked + i {
+  display: block;
+}
+
+#find-event-form #calendar {
+  text-align: center;
+  margin: 1rem;
+}
+
+#find-event-form #calendar #calendar-controls {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+#find-event-form #calendar #calendar-controls i {
+  font-size: 1.2rem;
+}
+
+#find-event-form #calendar #calendar-selected-date {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  padding: .5rem;
+  line-height: 1rem;
+}
+
+#find-event-form #calendar #calendar-selected-date #calendar-selected-day {
+  font-size: 3rem;
+  font-weight: bold;
+}
+
+#find-event-form #calendar #calendar-weeks {
+  width: 100%;
+  display: -ms-grid;
+  display: grid;
+  -ms-grid-columns: (1fr)[7];
+      grid-template-columns: repeat(7, 1fr);
+  gap: 5px;
+}
+
+#find-event-form #calendar #calendar-days {
+  display: -ms-grid;
+  display: grid;
+  -ms-grid-columns: (1fr)[7];
+      grid-template-columns: repeat(7, 1fr);
+  gap: 5px;
+}
+
+#find-event-form #calendar #calendar-days li {
+  aspect-ratio: 1/1;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  cursor: pointer;
+  border-radius: 50%;
+}
+
+#find-event-form #calendar #calendar-days li:hover {
+  background-color: #d69ecd;
+}
+
+#find-event-form .buttons {
+  width: 100%;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-pack: distribute;
+      justify-content: space-around;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+#find-event-form .buttons button {
+  font-size: 1.3rem;
+  padding: .5rem 1rem;
+}
+
+#find-event-form .buttons button:hover {
+  background-color: #d69ecd;
+  border: none;
+}
+
+#find-event-form .buttons #clear-search-form {
+  border: none;
+}
+
+#find-event-form .buttons button[type=submit] {
+  border: 3px solid #d69ecd;
 }
 
 .carousel-container {
@@ -151,8 +332,8 @@ main div:nth-child(2) {
   width: 200px;
   height: 200px;
   margin: 80px auto;
-  -webkit-perspective: 1000px;
-          perspective: 1000px;
+  -webkit-perspective: 900px;
+          perspective: 900px;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -180,8 +361,6 @@ main div:nth-child(2) {
   transition: transform 1s, -webkit-transform 1s;
   -webkit-animation: spin 10s linear infinite;
           animation: spin 10s linear infinite;
-  -webkit-animation-fill-mode: forwards;
-          animation-fill-mode: forwards;
 }
 
 .carousel-container .carousel .cell {
@@ -224,7 +403,6 @@ main div:nth-child(2) {
 }
 
 .product-page {
-  inherits: '.grid-7';
   overflow: hidden;
   position: relative;
   width: 100%;
@@ -263,7 +441,7 @@ main div:nth-child(2) {
 .product-page .left {
   position: relative;
   overflow: hidden;
-  background-color: #036d87;
+  background-color: #d69ecd;
   width: 100%;
   padding: 1rem;
   display: -webkit-box;
@@ -309,7 +487,6 @@ main div:nth-child(2) {
 
 .product-page .right .arrows button i {
   font-size: 3rem;
-  cursor: pointer;
   -webkit-transition: .2s;
   transition: .2s;
 }
@@ -386,6 +563,80 @@ main div:nth-child(2) {
   }
   100% {
     scale: 1;
+  }
+}
+
+@-webkit-keyframes transition-background-1 {
+  from {
+    background-position: 30% 50%;
+    background-size: 300%;
+  }
+  to {
+    background-position: 50% 70%;
+    background-size: 300%;
+  }
+}
+
+@keyframes transition-background-1 {
+  from {
+    background-position: 30% 50%;
+    background-size: 300%;
+  }
+  to {
+    background-position: 50% 70%;
+    background-size: 300%;
+  }
+}
+
+@-webkit-keyframes transition-background-2 {
+  from {
+    background-position: 50% 60%;
+    background-size: 200%;
+  }
+  50% {
+    background-position: center;
+    background-size: 100%;
+  }
+  to {
+    background-position: 80% 40%;
+    background-size: 100%;
+  }
+}
+
+@keyframes transition-background-2 {
+  from {
+    background-position: 50% 60%;
+    background-size: 200%;
+  }
+  50% {
+    background-position: center;
+    background-size: 100%;
+  }
+  to {
+    background-position: 80% 40%;
+    background-size: 100%;
+  }
+}
+
+@-webkit-keyframes transition-background-3 {
+  from {
+    background-position: 50% 50%;
+    background-size: 300%;
+  }
+  to {
+    background-position: center;
+    background-size: 100%;
+  }
+}
+
+@keyframes transition-background-3 {
+  from {
+    background-position: 50% 50%;
+    background-size: 300%;
+  }
+  to {
+    background-position: center;
+    background-size: 100%;
   }
 }
 /*# sourceMappingURL=app.css.map */
