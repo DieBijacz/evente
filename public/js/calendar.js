@@ -1,3 +1,24 @@
+// Export calendar function
+// Set up calendar and navigation
+export function initializeCalendar() {
+  const currentDate = new Date();
+  let selectedDate = new Date(currentDate.getFullYear(), currentDate.getMonth(), currentDate.getDate());
+  generateCalendar(selectedDate.getMonth(), selectedDate.getFullYear());
+  displayDate(currentDate);
+
+  $('#next-month').click(function () {
+    selectedDate.setMonth(selectedDate.getMonth() + 1);
+    generateCalendar(selectedDate.getMonth(), selectedDate.getFullYear());
+    displayDate(selectedDate);
+  });
+
+  $('#prev-month').click(function () {
+    selectedDate.setMonth(selectedDate.getMonth() - 1);
+    generateCalendar(selectedDate.getMonth(), selectedDate.getFullYear());
+    displayDate(selectedDate);
+  });
+}
+
 // Generate calendar for given month and year
 function generateCalendar(month, year) {
   const firstDayOfMonth = new Date(year, month, 1);
@@ -33,27 +54,6 @@ function displayDate(date) {
   $('#calendar-year').text(date.getFullYear());
 }
 
-// Set up calendar and navigation
-function initializeCalendar() {
-  const currentDate = new Date();
-  let selectedDate = new Date(currentDate.getFullYear(), currentDate.getMonth(), currentDate.getDate());
-  generateCalendar(selectedDate.getMonth(), selectedDate.getFullYear());
-  displayDate(currentDate);
 
-  $('#next-month').click(function () {
-    selectedDate.setMonth(selectedDate.getMonth() + 1);
-    generateCalendar(selectedDate.getMonth(), selectedDate.getFullYear());
-    displayDate(selectedDate);
-  });
 
-  $('#prev-month').click(function () {
-    selectedDate.setMonth(selectedDate.getMonth() - 1);
-    generateCalendar(selectedDate.getMonth(), selectedDate.getFullYear());
-    displayDate(selectedDate);
-  });
-}
 
-// Export calendar function
-export function calendar() {
-  initializeCalendar();
-}

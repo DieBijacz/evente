@@ -18,12 +18,26 @@
 
 <body>
   <nav>
-    <div>evente</div>
-    {{-- <i class="fa-solid fa-bars"></i> --}}
+    <ul>
+      <li><a href="/">evente</a></li>
+      <li><a href="/">=</a></li>
+    </ul>
   </nav>
   <main>
-    @yield('left')
-    @yield('right')
+
+    <div class="left-side">
+      <div class="block-1 page-transition"></div>
+      <div class="block-2 page-transition">event</div>
+      @yield('left')
+    </div>
+
+    <div class="right-side">
+      <div class="block-1 page-transition"></div>
+      <div class="block-2 page-transition">e</div>
+      @yield('right')
+    </div>
+
+    @yield('background')
   </main>
 </body>
 

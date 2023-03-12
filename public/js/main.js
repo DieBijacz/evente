@@ -1,19 +1,20 @@
-import { calendar } from "./calendar.js";
+import { initializeCalendar } from "./calendar.js";
 import { carousel } from "./carousel.js";
 const carouselElement = document.querySelector('.carousel')
 
 jQuery(document).ready(function () {
   if (carouselElement) carousel()
-  calendar()
+  initializeCalendar()
 })
 
 window.onload = () => {
-  gsap.to('.page-transition', { x: '100%', duration: .3 })
+  gsap.to('.block-1', { x: '100%', duration: .4, ease: "power4.out" })
+  gsap.to('.block-2', { x: '100%', duration: .2, ease: "power4.out" })
 }
 
 function pageTransitionExit() {
-  gsap.to('.page-transition-right', { x: '0%', duration: .3 })
-  gsap.to('.page-transition-left', { x: '0%', duration: .3 })
+  gsap.to('.block-1', { x: '0%', duration: .2, ease: "power4.out" })
+  gsap.to('.block-2', { x: '0%', duration: .4, ease: "power4.out" })
 }
 
 // Delay links to allow exit page transition
@@ -23,5 +24,5 @@ $('a').click(function (e) {
   pageTransitionExit();
   setTimeout(() => {
     window.location.href = target;
-  }, 200);
+  }, 300);
 });
