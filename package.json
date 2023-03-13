@@ -7,10 +7,10 @@
     "devDependencies": {
         "axios": "^1.1.2",
         "laravel-vite-plugin": "^0.7.2",
+        "sass": "^1.59.2",
         "vite": "^4.0.0"
     },
     "dependencies": {
-        "@barba/core": "^2.9.7",
         "gsap": "^3.11.4"
     }
 }

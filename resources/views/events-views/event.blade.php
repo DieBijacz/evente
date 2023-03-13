@@ -10,6 +10,7 @@
       <div class="month txt-mid">{{ date('M', strtotime($event->date)) }}</div>
     </div>
   </div>
+  <x-tags :tagsCsv='$event->tags' />
   <div class="description">
     Lorem ipsum dolor sit amet consectetur adipisicing elit. Consequuntur eaque blanditiis, eos deserunt quis
     laboriosam. Error modi alias tenetur vel!

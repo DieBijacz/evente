@@ -1,0 +1,209 @@
+@import url('https://fonts.googleapis.com/css2?family=Dancing+Script&family=Poppins:wght@100;200;400;500;700&display=swap');
+
+$blue: rgb(50, 81, 148);
+$main-color: #161616;
+$accent: rgb(112, 33, 143);
+$accent-3: hsl(310, 41%, 73%);
+$accent-2: hsl(221, 100%, 10%);
+$carousel-radius: 308px;
+$carousel-cell-width: 190px;
+$carousel-cell-height: 190px;
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  color: white;
+}
+
+.card {
+  padding: .5rem 1rem;
+  border-radius: 1rem;
+  margin: .25rem;
+  background-color: rgba($color: $main-color, $alpha: .6);
+}
+
+body {
+  font-family: 'Poppins', sans-serif;
+  position: relative;
+  overflow: hidden;
+  height: 100vh;
+  height: 100svh;
+}
+
+a {
+  text-decoration: none;
+}
+
+nav {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 3rem;
+  background-color: $main-color;
+  font-size: 2rem;
+  box-shadow: 2px 2px 20px $main-color;
+
+  ul {
+    margin: 0 3rem;
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+}
+
+button {
+  border: none;
+  background: transparent;
+  border-radius: 100vw;
+  cursor: pointer;
+}
+
+.container {
+  width: calc(min(1200px, 98%));
+  margin: auto;
+}
+
+main {
+  position: relative;
+  width: 100%;
+  height: calc(100vh - 3rem);
+  overflow: hidden;
+  display: flex;
+  flex-wrap: wrap;
+
+  .background-image {
+    position: absolute;
+    inset: 0;
+    z-index: -1;
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    // animation: 40s linear transition-background-2 infinite;
+  }
+
+  .left-side {
+    width: 350px;
+    position: relative;
+    overflow: hidden;
+    background-color: rgba($color: $main-color, $alpha: .6);
+    padding: 1rem;
+  }
+
+  .right-side {
+    flex: 1 1 800px;
+    position: relative;
+    overflow: hidden;
+    padding: 1rem;
+  }
+}
+
+.tags {
+  display: flex;
+  gap: .5rem;
+
+  .tag {
+    font-size: .75rem;
+    padding: .25rem .5rem;
+    background-color: rgba($color: $main-color, $alpha: .4);
+    border-radius: 8px;
+    border: 2px solid rgba($color: #fff, $alpha: .4);
+  }
+}
+
+ul {
+  list-style: none;
+}
+
+.txt-mid {
+  font-size: 2rem;
+}
+
+.txt-big {
+  font-size: 5rem;
+  font-weight: bold;
+  line-height: 4rem;
+}
+
+// PAGE TRANSITION
+.page-transition {
+  position: absolute;
+  inset: 0;
+  z-index: 101;
+}
+
+.block-1 {
+  background-color: rgba($color: rgb(255, 255, 255), $alpha: 1);
+}
+
+.block-2 {
+  background-color: rgba($color: #1f1f1f, $alpha: 1);
+  display: flex;
+  align-items: center;
+  font-size: 5rem;
+}
+
+.left-side {
+  .block-2 {
+    justify-content: flex-end;
+  }
+}
+
+.right-side {
+  .block-2 {
+    justify-content: flex-start;
+  }
+}
+
+@keyframes spin {
+  from {
+    transform: rotateY(0deg);
+
+  }
+
+  to {
+    transform: rotateY(360deg);
+  }
+}
+
+@keyframes transition-background-1 {
+  from {
+    background-position: 30% 50%;
+    background-size: 300%;
+  }
+
+  to {
+    background-position: 50% 70%;
+    background-size: 300%;
+  }
+}
+
+@keyframes transition-background-2 {
+  from {
+    background-position: 50% 60%;
+    background-size: 200%;
+  }
+
+  50% {
+    background-position: center;
+    background-size: 100%;
+  }
+
+  to {
+    background-position: 80% 40%;
+    background-size: 100%;
+  }
+}
+
+@keyframes transition-background-3 {
+  from {
+    background-position: 50% 50%;
+    background-size: 300%;
+  }
+
+  to {
+    background-position: center;
+    background-size: 100%;
+  }
+}

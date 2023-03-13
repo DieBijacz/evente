@@ -1,15 +1,15 @@
 @extends('layout')
 
 @section('left')
-<form id='find-event-form' action="" onsubmit="findEvent()">
+<form id='find-event-form' action="/">
   <ul class="options">
 
-    {{-- WHAT --}}
+    {{-- TYPE --}}
     <li class='box'>
       <div class="box-title">Type?</div>
 
       <label class="switch">
-        <input type="checkbox" id="checkbox-1" class="checkbox-toggle">
+        <input type="checkbox" id="search-type" class="checkbox-toggle" name="checkbox-1">
         <span class="slider" data-on='Any' data-off='pick'></span>
       </label>
 
@@ -17,19 +17,19 @@
         <ul class="small-options">
           <li>
             <label for="rock">Rock
-              <input type="checkbox" id="rock">
+              <input type="checkbox" id="rock" name="search-type" value="Rock">
               <i class="fa-solid fa-check"></i>
             </label>
           </li>
           <li>
             <label for="pop">POP
-              <input type="checkbox" id="pop">
+              <input type="checkbox" id="pop" name="search-type" value="pop">
               <i class="fa-solid fa-check"></i>
             </label>
           </li>
           <li>
-            <label for="festival">Festival
-              <input type="checkbox" id="festival">
+            <label for="Hip-Hop">Hip-Hop
+              <input type="checkbox" id="Hip-Hop" name="search-type" value="Hip-Hop">
               <i class="fa-solid fa-check"></i>
             </label>
           </li>
@@ -43,7 +43,7 @@
       <div class="box-title">Where?</div>
 
       <label class="switch">
-        <input type="checkbox" id="checkbox-2" class="checkbox-toggle">
+        <input type="checkbox" id="search-where" class="checkbox-toggle" name="checkbox-2">
         <span class="slider" data-on='localy' data-off='go out'></span>
       </label>
 
@@ -57,7 +57,7 @@
       <div class="box-title">When?</div>
 
       <label class="switch">
-        <input type="checkbox" id="checkbox-3" class="checkbox-toggle">
+        <input type="checkbox" id="search-when" class="checkbox-toggle" name='checkbox-3'>
         <span class="slider" data-on='this week' data-off='pick date'></span>
       </label>
 
@@ -68,10 +68,10 @@
               <i class="fa-solid fa-arrow-left"></i>
             </button>
             <div id="calendar-selected-date">
-              <div id="calendar-selected-day">03</div>
+              <div id="calendar-selected-day"></div>
               <div>
-                <p id='calendar-month'>MAR</p>
-                <p id='calendar-year'>2023</p>
+                <p id='calendar-month'></p>
+                <p id='calendar-year'></p>
               </div>
             </div>
             <button id="next-month" type="button">
@@ -97,7 +97,7 @@
       <div class="box-title">Price?</div>
 
       <label class="switch">
-        <input type="checkbox" id="checkbox-4" class="checkbox-toggle">
+        <input type="checkbox" id="search-price" class="checkbox-toggle" name="checkbox-4">
         <span class="slider" data-on='free' data-off='select'></span>
       </label>
 
@@ -134,27 +134,20 @@
 
   <div class="buttons">
     <button id="clear-search-form">Clear</button>
-    <a href="/event/2">
-      <button type="submit">Find</button>
-    </a>
+    <button type="submit" id="search-button">Find</button>
   </div>
 </form>
 @endsection
 
 @section('right')
-{{-- <div class="carousel-container">
-  <div class="carousel">
-    @foreach ($events as $event)
-    <div href='/event/{{$event->id}}' class="cell" style="background-image: url('{{$event->image}}')">
-      <div class="info">
-        <h3 class="date">{{ date('d M', strtotime($event->date)) }}</h3>
-        <p class="location">{{$event->location}}</p>
-      </div>
-    </div>
-    @endforeach
-    </a>
-  </div>
-</div> --}}
+<div id="suggested-events">
+  @foreach ($events as $event)
+  <x-event-card :event='$event' />
+  @endforeach
+</div>
+
+{{--
+<x-carousel :events='$events' /> --}}
 @endsection
 
 @section('background')

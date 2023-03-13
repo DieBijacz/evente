@@ -7,5 +7,12 @@ use Illuminate\Database\Eloquent\Model;
 
 class event extends Model
 {
-    use HasFactory;
+  use HasFactory;
+
+  public function scopeFilter($query, array $filters)
+  {
+    if ($filters['tag'] ?? false) {
+      $query->where('tags', 'like', '%' . request('tag') . '%');
+    }
+  }
 }

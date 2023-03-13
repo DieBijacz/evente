@@ -13,7 +13,7 @@ export function callFunctionXTimes(fn, x, delay) {
 // SEARCH TOGGLE CHECKBOXES
 jQuery(document).ready(function () {
   jQuery('.checkbox-toggle').on('click', function () {
-    const target = jQuery(this).attr('id').replace('checkbox-', '');
+    const target = jQuery(this).attr('name').replace('checkbox-', '');
     if (jQuery(this).is(':checked')) {
       jQuery('#toggle-section-' + target).addClass('show');
       // jQuery('#toggle-section-' + target).hide();

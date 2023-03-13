@@ -6,7 +6,6 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <link rel="icon" href="images/favicon.ico" />
-  <link href="/css/app.css" rel="stylesheet" type="text/css" />
   <script src="/js/main.js" defer type="module"></script>
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.3/jquery.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.11.4/gsap.min.js"></script>
@@ -14,6 +13,8 @@
     integrity="sha512-SzlrxWUlpfuzQ+pcUCosxcglQRNAq/DZjVsC0lE40xsADsfeQoEypE+enwcOiGjk/bSuGGKHEyjSoQ1zVisanQ=="
     crossorigin="anonymous" referrerpolicy="no-referrer" />
   <title>Evente</title>
+  @vite(['resources/scss/main.scss','resources/scss/carousel.scss', 'resources/scss/event-page.scss',
+  'resources/scss/home-page.scss',])
 </head>
 
 <body>
