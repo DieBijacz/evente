@@ -11,7 +11,7 @@ class eventController extends Controller
   public function index()
   {
     return view('home', [
-      'events' => Event::latest()->filter(request(['tag', 'when']))->get()
+      'events' => Event::latest()->filter(request(['tag', 'when', 'search']))->get()
     ]);
   }
 

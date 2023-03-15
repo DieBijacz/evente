@@ -21,6 +21,7 @@ export function initializeCalendar() {
 
 // Generate calendar for given month and year
 function generateCalendar(month, year) {
+  const currentDate = new Date();
   const firstDayOfMonth = new Date(year, month, 1);
   const daysInMonth = new Date(year, month + 1, 0).getDate();
   const $calendarDays = $('#calendar-days').empty();
@@ -30,19 +31,32 @@ function generateCalendar(month, year) {
     $calendarDays.append($('<li></li>').addClass('empty'));
   }
 
-  // Add list items for each day in the month
+  // Add radio checkboxes for each day in the month
   for (let day = 1; day <= daysInMonth; day++) {
-    const $day = $('<li></li>').text(day);
+    const $day = $('<li></li>');
+    const $radio = $('<input type="radio"/>').attr('name', 'calendar-day').val(day);
+    const $label = $('<label></label>').text(day);
+    $label.append($radio);
+    $day.append($label);
+
     if (firstDayOfMonth.getDay() === 5 || firstDayOfMonth.getDay() === 6) {
       $day.addClass('weekend');
     }
+
+    if (year === currentDate.getFullYear() && month === currentDate.getMonth() && day === currentDate.getDate()) {
+      $radio.prop('checked', true);
+    }
+
+    $radio.change(function () {
+      const day = $(this).val()
+      const month = $('#calendar-month').text()
+      const year = $('#calendar-year').text()
+
+      displayDate(new Date(`${month} ${day}, ${year}`))
+    })
+
     $calendarDays.append($day);
     firstDayOfMonth.setDate(firstDayOfMonth.getDate() + 1);
-  }
-
-  // Add empty list items for days after the last day of the month
-  for (let i = $calendarDays.children().length; i < 42; i++) {
-    $calendarDays.append($('<li></li>').addClass('empty'));
   }
 }
 

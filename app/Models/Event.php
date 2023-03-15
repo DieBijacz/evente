@@ -14,5 +14,11 @@ class event extends Model
     if ($filters['tag'] ?? false) {
       $query->where('tags', 'like', '%' . request('tag') . '%');
     }
+    if ($filters['when'] ?? false) {
+      $query->where('date', 'like', '%' . request('when') . '%');
+    }
+    if ($filters['search'] ?? false) {
+      $query->where('title', 'like', '%' . request('tag') . '%');
+    }
   }
 }

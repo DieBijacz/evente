@@ -1,9 +1,9 @@
 @import url('https://fonts.googleapis.com/css2?family=Dancing+Script&family=Poppins:wght@100;200;400;500;700&display=swap');
 
 $blue: rgb(50, 81, 148);
-$main-color: #161616;
+$main-color: #000b16;
 $accent: rgb(112, 33, 143);
-$accent-3: hsl(310, 41%, 73%);
+$accent-3: hsl(202, 86%, 56%);
 $accent-2: hsl(221, 100%, 10%);
 $carousel-radius: 308px;
 $carousel-cell-width: 190px;
@@ -16,11 +16,57 @@ $carousel-cell-height: 190px;
   color: white;
 }
 
+.custom-scrollbar {
+  &::-webkit-scrollbar {
+    width: 2px;
+  }
+
+  &::-webkit-scrollbar-track {
+    background-color: rgba($color: #fff, $alpha: .2);
+  }
+
+  &::-webkit-scrollbar-thumb {
+    background: $accent-3;
+  }
+}
+
 .card {
+  display: grid;
+  height: 150px;
+  grid-template-columns: 1fr 2fr;
   padding: .5rem 1rem;
   border-radius: 1rem;
   margin: .25rem;
   background-color: rgba($color: $main-color, $alpha: .6);
+  transition: .1s;
+
+  &:hover {
+    background-color: rgba(white, $alpha: .1);
+    transform: translateX(-10px);
+  }
+}
+
+label:has(input[type='radio']) {
+  input {
+    display: none;
+  }
+}
+
+.date-format-1 {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: .5rem;
+  line-height: 1rem;
+
+  .day {
+    font-size: 3rem;
+    font-weight: bold;
+  }
+
+  .month {
+    font-weight: bold;
+  }
 }
 
 body {
@@ -33,6 +79,7 @@ body {
 
 a {
   text-decoration: none;
+  cursor: pointer;
 }
 
 nav {
@@ -86,7 +133,7 @@ main {
   .left-side {
     width: 350px;
     position: relative;
-    overflow: hidden;
+    overflow-x: hidden;
     background-color: rgba($color: $main-color, $alpha: .6);
     padding: 1rem;
   }
@@ -134,11 +181,11 @@ ul {
 }
 
 .block-1 {
-  background-color: rgba($color: rgb(255, 255, 255), $alpha: 1);
+  background-color: rgba($color: rgb(255, 255, 255), $alpha: .5);
 }
 
 .block-2 {
-  background-color: rgba($color: #1f1f1f, $alpha: 1);
+  background-color: rgba($color: $main-color, $alpha: 1);
   display: flex;
   align-items: center;
   font-size: 5rem;

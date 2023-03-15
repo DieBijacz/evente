@@ -2,9 +2,11 @@
 
 // LEFT
 #find-event-form {
-  // background-color: $accent-2;
-  height: 100%;
+  position: absolute;
+  inset: 0;
+  overflow-y: scroll;
   transition: .3s;
+  padding-bottom: 3rem;
 
   .options {
     .box {
@@ -15,6 +17,22 @@
 
       .box-title {
         font-size: 1.3rem;
+      }
+
+      input[type='text'] {
+        font-size: 1.3rem;
+        width: 100%;
+        border: none;
+        outline: none;
+        height: 50px;
+        padding: .5rem 1rem;
+        border-radius: 100vw;
+        color: $main-color;
+        background-color: rgba($color: #fff, $alpha: .8);
+
+        &:focus {
+          background-color: white;
+        }
       }
 
       .switch {
@@ -130,19 +148,6 @@
       }
     }
 
-    #calendar-selected-date {
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      padding: .5rem;
-      line-height: 1rem;
-
-      #calendar-selected-day {
-        font-size: 3rem;
-        font-weight: bold;
-      }
-    }
-
     #calendar-weeks,
     #calendar-days {
       width: 100%;
@@ -153,16 +158,29 @@
 
     #calendar-days {
       li {
-        aspect-ratio: 1/1;
-        display: flex;
-        justify-content: center;
-        align-items: center;
+        overflow: hidden;
         border-radius: 50%;
-        transition: .1s;
 
-        &:not(.empty):hover {
-          cursor: pointer;
-          background-color: $accent-3;
+        label {
+          aspect-ratio: 1/1;
+          display: flex;
+          justify-content: center;
+          align-items: center;
+          transition: .3s;
+
+          &:not(.empty):hover {
+            cursor: pointer;
+            background-color: $accent-3;
+          }
+
+
+          &:has(input:checked) {
+            background-color: $accent-3;
+          }
+        }
+
+        &.weekend {
+          background-color: rgba($color: $accent-3, $alpha: .2);
         }
       }
     }
@@ -189,7 +207,10 @@
 // RIGHT
 
 #suggested-events {
-  height: 450px;
+  position: absolute;
+  top: 0;
+  right: 0;
+  height: 100%;
   width: 500px;
   overflow-y: scroll;
 }

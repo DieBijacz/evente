@@ -1,8 +1,14 @@
 @extends('layout')
 
 @section('left')
-<form id='find-event-form' action="/">
+<form id='find-event-form' action="/" class="custom-scrollbar">
   <ul class="options">
+
+    {{-- SEARCH --}}
+    <li class='box'>
+      <div class="box-title">Search?</div>
+      <input type="text" id="search-text" name="search-text" class="slider">
+    </li>
 
     {{-- TYPE --}}
     <li class='box'>
@@ -67,10 +73,10 @@
             <button id="prev-month" type="button">
               <i class="fa-solid fa-arrow-left"></i>
             </button>
-            <div id="calendar-selected-date">
-              <div id="calendar-selected-day"></div>
+            <div id="calendar-selected-date" class="date-format-1">
+              <div id="calendar-selected-day" class="day"></div>
               <div>
-                <p id='calendar-month'></p>
+                <p id='calendar-month' class="month"></p>
                 <p id='calendar-year'></p>
               </div>
             </div>
@@ -140,7 +146,7 @@
 @endsection
 
 @section('right')
-<div id="suggested-events">
+<div id="suggested-events" class="custom-scrollbar">
   @foreach ($events as $event)
   <x-event-card :event='$event' />
   @endforeach
@@ -151,5 +157,5 @@
 @endsection
 
 @section('background')
-<div class="background-image" style="background-image: url(../images/hero-bg-1.jpg);"></div>
+<div class="background-image" style="background-image: url(../images/asd.jpg);"></div>
 @endsection

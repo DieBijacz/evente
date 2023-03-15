@@ -1,47 +1,55 @@
+// Import modules
 import { initializeCalendar } from "./calendar.js";
 import { carousel } from "./carousel.js";
+
+// Initialize carousel if it exists
 const carouselElement = document.querySelector('.carousel')
-
-jQuery(document).ready(function () {
-  if (carouselElement) carousel()
-  initializeCalendar()
-})
-
-// SET TYPE
-function getTypesToSearch() {
-  let types = '/?tag='
-  const typeEls = document.querySelectorAll("input[name='search-type']:checked")
-  typeEls.forEach(el => { types += ` ${el.value}` })
-  return types.trim()
+if (carouselElement) {
+  carousel()
 }
 
-// SET DATE
-$()
+initializeCalendar()
+// Set text to search
+function getTextToSearch() {
+  const text = document.querySelector('#search-text').value
+  return text ? `/?search=${text}` : ''
+}
+
+// Set type to search
+function getTagsToSearch() {
+  const types = document.querySelectorAll("input[name='search-type']:checked")
+  return types.length > 0 ? `/?tag=${Array.from(types).map(el => el.value).join(' ')}` : ''
+}
+
+// Set date to search
 function getDateToSearch() {
-  let date = ''
   const calendarSearch = $('#search-when').is(':checked')
-  if (calendarSearch) {
-    const selectedDay = $('#calendar-selected-day').text();
-    const selectedMonth = $('#calendar-month').text();
-    const selectedYear = $('#calendar-year').text();
-    date = `/?from=${selectedDay}-${selectedMonth}-${selectedYear}`
-  }
-  return date
+
+  const months = ['JAN', 'FEB', 'MAR', 'APR', 'MAY', 'JUN', 'JUL', 'AUG', 'SEP', 'OCT', 'NOV', 'DEC'];
+  const month = (months.indexOf($('#calendar-month').text()) + 1).toString()
+  const formatMonth = ('0' + month).slice(-2)
+
+  const day = ('0' + ($('#calendar-selected-day').text()).toString()).slice(-2)
+
+  return calendarSearch ? `/?when=${$('#calendar-year').text()}-${formatMonth}-${day}` : ''
 }
 
-// SEARCH
+// Search
 $('#search-button').click(function (e) {
   e.preventDefault()
-  const types = getTypesToSearch()
-  const date = getDateToSearch()
-  window.location.href = `${types.length > 6 ? types : ''}${date}`
+  const text = getTextToSearch()
+  const tags = getTagsToSearch()
+  const when = getDateToSearch()
+  window.location.href = text + tags + when
 })
 
+// Animate page on load
 window.onload = () => {
   gsap.to('.block-1', { x: '100%', duration: .4, ease: "power4.out" })
   gsap.to('.block-2', { x: '100%', duration: .2, ease: "power4.out" })
 }
 
+// Animate page transition exit
 function pageTransitionExit() {
   gsap.to('.block-1', { x: '0%', duration: .2, ease: "power4.out" })
   gsap.to('.block-2', { x: '0%', duration: .4, ease: "power4.out" })
