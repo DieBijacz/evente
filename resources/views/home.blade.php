@@ -150,6 +150,9 @@
   @foreach ($events as $event)
   <x-event-card :event='$event' />
   @endforeach
+  <div class="pagination">
+    {{$events->links()}}
+  </div>
 </div>
 
 {{--
@@ -157,5 +160,6 @@
 @endsection
 
 @section('background')
-<div class="background-image" style="background-image: url(../images/asd.jpg);"></div>
+<div class=" background-image" style="background-image: url(../images/asd.jpg);">
+</div>
 @endsection

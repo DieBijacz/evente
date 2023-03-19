@@ -25,34 +25,6 @@
   }
 }
 
-input,
-textarea {
-  width: 100%;
-  color: #000b16;
-}
-
-.card {
-  display: grid;
-  height: 150px;
-  grid-template-columns: 1fr 2fr;
-  padding: .5rem 1rem;
-  border-radius: 1rem;
-  margin: .25rem;
-  background-color: rgba($color: $main-color, $alpha: .6);
-  transition: .1s;
-
-  &:hover {
-    background-color: rgba(white, $alpha: .1);
-    transform: translateX(-10px);
-  }
-}
-
-label:has(input[type='radio']) {
-  input {
-    display: none;
-  }
-}
-
 .date-format-1 {
   display: flex;
   justify-content: center;
@@ -78,12 +50,7 @@ body {
   height: 100svh;
 }
 
-a {
-  text-decoration: none;
-  cursor: pointer;
-}
-
-nav {
+.nav {
   display: flex;
   justify-content: center;
   align-items: center;
@@ -99,18 +66,6 @@ nav {
     justify-content: space-between;
     align-items: center;
   }
-}
-
-button {
-  border: none;
-  background: transparent;
-  border-radius: 100vw;
-  cursor: pointer;
-}
-
-.container {
-  width: calc(min(1200px, 98%));
-  margin: auto;
 }
 
 main {

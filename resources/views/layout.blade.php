@@ -18,7 +18,7 @@
 </head>
 
 <body>
-  <nav>
+  <nav class="nav">
     <ul>
       <li><a href="/">evente</a></li>
       <li><a href="/event/create">create</a></li>

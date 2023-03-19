@@ -197,7 +197,6 @@
       padding: .5rem 1rem;
 
       &:hover {
-        background-color: $accent-3;
         border: none;
       }
     }
@@ -213,4 +212,13 @@
   height: 100%;
   width: 500px;
   overflow-y: scroll;
+
+  .pagination {
+    nav {
+      display: flex;
+      width: 100%;
+      justify-content: space-between;
+      padding: .5rem 1rem;
+    }
+  }
 }

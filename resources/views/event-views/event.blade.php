@@ -88,5 +88,5 @@
 </div>
 @endsection
 @section('background')
-<div class="background-image" style="background-image: url(../{{$event->image}});"></div>
+<div class="background-image" style="background-image: url(../storage/{{$event->image}});"></div>
 @endsection

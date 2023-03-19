@@ -11,7 +11,7 @@ class eventController extends Controller
   public function index()
   {
     return view('home', [
-      'events' => Event::latest()->filter(request(['tag', 'when', 'search']))->get()
+      'events' => Event::latest()->filter(request(['tag', 'when', 'search']))->simplePaginate(10)
     ]);
   }
 
@@ -30,7 +30,7 @@ class eventController extends Controller
   // Store event
   public function store(Request $request)
   {
-    // dd($request->all());
+    // dd($request->file('file'));
     $formFields = $request->validate([
       "title" => 'required',
       "tags" => 'required',
@@ -41,6 +41,10 @@ class eventController extends Controller
       "date" => 'required',
       "image" => 'required',
     ]);
+
+    if ($request->hasFile('file')) {
+      $formFields['image'] = $request->file('file')->store('images', 'public');
+    }
 
     Event::create($formFields);
 
