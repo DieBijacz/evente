@@ -7,7 +7,7 @@
     {{-- SEARCH --}}
     <li class='box'>
       <div class="box-title">Search?</div>
-      <input type="text" id="search-text" name="search-text" class="slider">
+      <input type="text" id="search-text" name="search">
     </li>
 
     {{-- TYPE --}}
@@ -29,7 +29,7 @@
           </li>
           <li>
             <label for="pop">POP
-              <input type="checkbox" id="pop" name="search-type" value="pop">
+              <input type="checkbox" id="pop" name="search-type" value="Pop">
               <i class="fa-solid fa-check"></i>
             </label>
           </li>

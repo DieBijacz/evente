@@ -1,0 +1,18 @@
+$blue: rgb(50, 81, 148);
+$main-color: #000b16;
+$accent: rgb(112, 33, 143);
+$accent-3: hsl(202, 86%, 56%);
+$accent-2: hsl(221, 100%, 10%);
+$carousel-radius: 308px;
+$carousel-cell-width: 190px;
+$carousel-cell-height: 190px;
+
+.message {
+  position: fixed;
+  top: 10%;
+  right: 0;
+  width: 300px;
+  background-color: red;
+  color: white;
+  padding: 1rem 2rem;
+}

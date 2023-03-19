@@ -18,6 +18,32 @@ class eventController extends Controller
   // Show single event
   public function show(Event $event)
   {
-    return view('events-views/event', ['event' => $event]);
+    return view('event-views.event', ['event' => $event]);
+  }
+
+  // Craete event
+  public function create()
+  {
+    return view('event-views.create');
+  }
+
+  // Store event
+  public function store(Request $request)
+  {
+    // dd($request->all());
+    $formFields = $request->validate([
+      "title" => 'required',
+      "tags" => 'required',
+      "location" => 'required',
+      "description" => 'required',
+      "price" => 'required',
+      "pool" => 'required',
+      "date" => 'required',
+      "image" => 'required',
+    ]);
+
+    Event::create($formFields);
+
+    return redirect('/')->with('message', 'Event added succesfully');
   }
 }

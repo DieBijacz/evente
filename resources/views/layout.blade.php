@@ -9,19 +9,19 @@
   <script src="/js/main.js" defer type="module"></script>
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.3/jquery.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.11.4/gsap.min.js"></script>
+  <script src="//unpkg.com/alpinejs" defer></script>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.3.0/css/all.min.css"
     integrity="sha512-SzlrxWUlpfuzQ+pcUCosxcglQRNAq/DZjVsC0lE40xsADsfeQoEypE+enwcOiGjk/bSuGGKHEyjSoQ1zVisanQ=="
     crossorigin="anonymous" referrerpolicy="no-referrer" />
   <title>Evente</title>
-  @vite(['resources/scss/main.scss','resources/scss/carousel.scss', 'resources/scss/event-page.scss',
-  'resources/scss/home-page.scss',])
+  @vite(['resources/scss/main.scss'])
 </head>
 
 <body>
   <nav>
     <ul>
       <li><a href="/">evente</a></li>
-      <li><a href="/">=</a></li>
+      <li><a href="/event/create">create</a></li>
     </ul>
   </nav>
   <main>
@@ -33,6 +33,7 @@
     </div>
 
     <div class="right-side">
+      <x-flash-message />
       <div class="block-1 page-transition"></div>
       <div class="block-2 page-transition">e</div>
       @yield('right')

@@ -9,39 +9,52 @@ if (carouselElement) {
 }
 
 initializeCalendar()
-// Set text to search
+
+// Get search text from input field
 function getTextToSearch() {
   const text = document.querySelector('#search-text').value
+  // If there is text, return it as a search parameter, otherwise return an empty string
   return text ? `/?search=${text}` : ''
 }
 
-// Set type to search
+// Get selected tags to search for
 function getTagsToSearch() {
+  // Get all checked input elements with name 'search-type'
   const types = document.querySelectorAll("input[name='search-type']:checked")
+  // If there are any checked input elements, return them as a search parameter, otherwise return an empty string
   return types.length > 0 ? `/?tag=${Array.from(types).map(el => el.value).join(' ')}` : ''
 }
 
-// Set date to search
+// Get selected date to search for
 function getDateToSearch() {
   const calendarSearch = $('#search-when').is(':checked')
-
-  const months = ['JAN', 'FEB', 'MAR', 'APR', 'MAY', 'JUN', 'JUL', 'AUG', 'SEP', 'OCT', 'NOV', 'DEC'];
-  const month = (months.indexOf($('#calendar-month').text()) + 1).toString()
-  const formatMonth = ('0' + month).slice(-2)
-
-  const day = ('0' + ($('#calendar-selected-day').text()).toString()).slice(-2)
-
-  return calendarSearch ? `/?when=${$('#calendar-year').text()}-${formatMonth}-${day}` : ''
+  // Check if the calendar search option is selected
+  if (calendarSearch) {
+    // Get the selected month from the calendar and convert it to a 2-digit string
+    const months = ['JAN', 'FEB', 'MAR', 'APR', 'MAY', 'JUN', 'JUL', 'AUG', 'SEP', 'OCT', 'NOV', 'DEC'];
+    const month = (months.indexOf($('#calendar-month').text()) + 1).toString()
+    const formatMonth = ('0' + month).slice(-2)
+    // Get the selected day from the calendar and convert it to a 2-digit string
+    const formatDay = ('0' + ($('#calendar-selected-day').text()).toString()).slice(-2)
+    // Combine the year, month, and day into a search parameter
+    return `/?when=${$('#calendar-year').text()}-${formatMonth}-${formatDay}`
+  } else {
+    // If calendar search is not selected, return an empty string
+    return ''
+  }
 }
 
-// Search
+// Handle search button click
 $('#search-button').click(function (e) {
   e.preventDefault()
+  // Get the search parameters
   const text = getTextToSearch()
   const tags = getTagsToSearch()
   const when = getDateToSearch()
+  // Combine the search parameters into a URL and redirect to it
   window.location.href = text + tags + when
 })
+
 
 // Animate page on load
 window.onload = () => {
